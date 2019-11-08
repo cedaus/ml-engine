@@ -217,6 +217,11 @@ reg_model = build_regularized_model(
 reg_model.train(num_iterations=2000, learning_rate=20.)
 
 """
+Similarity Prediction for Regularized Model
+"""
+SP.user_recommendations(embeddings=reg_model.embeddings, user_id=555, k=20, exclude_rated=True)
+
+"""
 """
 EV.movie_embedding_norm([model, model_lowinit])
 
