@@ -12,3 +12,6 @@ A recommendation engine filters the data using different algorithms and recommen
 * Dot Product
 * Euclidean Distance
 * Pearson's Correlation
+
+**Demo**:
+[Link to Google Collab](https://colab.research.google.com/drive/1NiZueMUlvaUzn0yzuIZOZPT3hC4gLRws)
