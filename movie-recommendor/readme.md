@@ -106,11 +106,11 @@ def explore_user_data(self):
     ).properties(width=500, height=500, selection=self.age_filter)
 ```
 
-> Users Data tables
+> Users Data table
 
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-3.png)
 
-> Users Ratings Data tables
+> Users Ratings Data table
 
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-4.png)
 
@@ -118,6 +118,23 @@ def explore_user_data(self):
 
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-6.png)
 
+> Histograms for
+
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-7.png)
+
+Lets also look at the information about movies and ratings given to them
+
+> Movies Data table
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-8.png)
+
+> Movies Ratings Data table
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-9.png)
+
+> Chart for genre
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-10.png)
+
+> Histogram for 
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-11.png)
 
 **Filtering Data**:
 * Content based filtering
