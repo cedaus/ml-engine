@@ -4,6 +4,23 @@ A recommendation engine filters the data using different algorithms and recommen
 
 In this article, we will cover various types of recommendation engine algorithms and fundamentals of creating them in Python. We will also see the mathematics behind the workings of these algorithms. Finally, we will create our own recommendation engine
 
+**Table of Contents**
+- Understanding the working of recommendation system
+  - Similarity Prediction
+  - Filtering
+    - Content based filtering
+    - Collaborative filtering
+  - Recommendation with Matrix Factorization
+  - Recommendatino with Deep Neural Networks
+    
+- Process to create a functional recommendation system
+  - Collecting Data
+  - Exploring Data
+  - Filtering Data
+
+### Understanding the working of recommendation system
+
+### Process to create a functional recommendation system
 **Collecting Data**:
 
 This is the first and most crucial step for building a recommendation engine. The data can be collected by two means: explicitly and implicitly. Explicit data is information that is provided intentionally, i.e. input from the users such as movie ratings. Implicit data is information that is not provided intentionally but gathered from available data streams like search history, clicks, order history, etc.
