@@ -24,11 +24,13 @@ In this article, we will cover various types of recommendation engine algorithms
 ## Understanding the working of recommendation system
 
 ### Similarity Prediction
-**Type of similarities techniques**:
+**Type of similarities Measures**:
 * Cosine
 * Dot Product
 * Euclidean Distance
 * Pearson's Correlation
+
+**Which Similarity Measure to Choose?**
 
 ### Filtering
 * Content based filtering
