@@ -74,14 +74,6 @@ Before we dive into model building, let's inspect our MovieLens dataset. It is u
 
 We start by printing the users dataset and creating some histograms associated to it.
 
-Users and Users Ratings Data tables
-![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-3.png)
-![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-4.png)
-
-Chart for occupation and age distribution for users
-![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-6.png)
-
-
 > Code snippert from data_loader.py
 ```
 def explore_user_data(self):
@@ -113,6 +105,16 @@ def explore_user_data(self):
             alt.value("lightgray")),
     ).properties(width=500, height=500, selection=self.age_filter)
 ```
+
+> Users Data tables
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-3.png)
+
+> Users Ratings Data tables
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-4.png)
+
+> Chart for occupation and age distribution for users
+![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-6.png)
+
 
 **Filtering Data**:
 * Content based filtering
