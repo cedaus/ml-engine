@@ -107,12 +107,15 @@ def explore_user_data(self):
 ```
 
 > Users Data tables
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-3.png)
 
 > Users Ratings Data tables
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-4.png)
 
 > Chart for occupation and age distribution for users
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-6.png)
 
 
