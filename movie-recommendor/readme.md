@@ -14,14 +14,31 @@ In this article, we will cover various types of recommendation engine algorithms
   - Recommendatino with Deep Neural Networks
     
 - Process to create a functional recommendation system
-  - Collecting Data
-  - Exploring Data
-  - Filtering Data
+  - Collecting & Exploring Data
+    - Collect data from Movielens
+    - Explore Users and Movies data
+    - Split Data into training and test data
+  - Building Collaborative Matrix Factorization Model
+  - Building Softmax Model
 
-### Understanding the working of recommendation system
+## Understanding the working of recommendation system
 
-### Process to create a functional recommendation system
-**Collecting Data**:
+### Similarity Prediction
+**Type of similarities techniques**:
+* Cosine
+* Dot Product
+* Euclidean Distance
+* Pearson's Correlation
+
+### Filtering
+* Content based filtering
+* User-User collaborative filtering
+* Item-Item collaborative filtering
+
+## Process to create a functional recommendation system
+
+### Collecting & Exploring Data
+**Collecting Data from Movielens**:
 
 This is the first and most crucial step for building a recommendation engine. The data can be collected by two means: explicitly and implicitly. Explicit data is information that is provided intentionally, i.e. input from the users such as movie ratings. Implicit data is information that is not provided intentionally but gathered from available data streams like search history, clicks, order history, etc.
 
@@ -85,7 +102,7 @@ def load_movielens_dataset(self):
     return movielens
 ```
 
-**Exploring Dataset**:
+**Explore Users and Movies data**:
 
 Before we dive into model building, let's inspect our MovieLens dataset. It is usually helpful to understand the statistics of the dataset.
 
@@ -189,16 +206,7 @@ def explore_movies_data(self):
 
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-11.png)
 
-**Filtering Data**:
-* Content based filtering
-* User-User collaborative filtering
-* Item-Item collaborative filtering
-
-**Similarities Techniques**:
-* Cosine
-* Dot Product
-* Euclidean Distance
-* Pearson's Correlation
+### Building Collaborative Matrix Factorization Model
 
 **Demo**:
 [Link to Google Collab](https://colab.research.google.com/drive/1NiZueMUlvaUzn0yzuIZOZPT3hC4gLRws)
