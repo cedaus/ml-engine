@@ -8,45 +8,64 @@ In this article, we will cover various types of recommendation engine algorithms
 
 This is the first and most crucial step for building a recommendation engine. The data can be collected by two means: explicitly and implicitly. Explicit data is information that is provided intentionally, i.e. input from the users such as movie ratings. Implicit data is information that is not provided intentionally but gathered from available data streams like search history, clicks, order history, etc.
 
-For our usecase here we will use the pre collected dataset of Movielens.
+For our casestudy we will work on the MovieLens dataset and build a model to recommend movies to the end users. This data has been collected by the GroupLens Research Project at the University of Minnesota. The dataset can be downloaded from here. This dataset consists of:
+* 100,000 ratings (1-5) from 943 users on 1682 movies
+* Demographic information of the users (age, gender, occupation, etc.)
+
 
 > Code snippet from data_loader.py
 ```
-class DataLoaderExplorer():
-    """
-    users: Table of users
-    users_ratings: Table of users with ratings count and ratings mean
-    movies: Table of movies
-    movies_ratings: Table of movies with ratings count and ratings mean
-    # Ratings Count: Total number of ratings given by user or given to movies
-    # Ratings Mean: Mean rating given by user or given to movies
-    """
-    def __init__(self):
-        self.users = None
-        self.movies = None
-        self.ratings = None
-        self.holdout_fraction = 0.1
-        self.users_ratings = None
-        self.movies_ratings = None
-        self.occupation_chart = None
-        self.occupation_filter = None
-        self.age_chart = None
-        self.age_filter = None
-        self.genre_filter = None
-        self.genre_chart = None
-        self.genre_cols = []
-        self.users_cols = []
-        self.movies_cols = []
-        self.ratings_cols = []
-        self.df = None
-        self.train_df = None
-        self.test_df = None
-        
-        def mark_genres(self):
-        ...
-        
-        def load_movielens_dataset(self):
-        ...
+def load_movielens_dataset(self):
+    print("Downloading movielens data...")
+    from urllib.request import urlretrieve
+    import zipfile
+
+    urlretrieve("http://files.grouplens.org/datasets/movielens/ml-100k.zip", "movielens.zip")
+    zip_ref = zipfile.ZipFile('movielens.zip', "r")
+    zip_ref.extractall()
+    print("Done. Dataset contains:")
+    print(zip_ref.read('ml-100k/u.info'))
+
+    # The movies file contains a binary feature for each genre.
+    self.genre_cols = [
+    "genre_unknown", "Action", "Adventure", "Animation", "Children", "Comedy",
+    "Crime", "Documentary", "Drama", "Fantasy", "Film-Noir", "Horror",
+    "Musical", "Mystery", "Romance", "Sci-Fi", "Thriller", "War", "Western"
+    ]
+
+    # Loading users dataset
+    self.users_cols = ['user_id', 'age', 'sex', 'occupation', 'zip_code']
+    self.users = pd.read_csv(
+        'ml-100k/u.user', sep='|', names=self.users_cols, encoding='latin-1')
+    # Since the ids start at 1, we shift them to start at 0.
+    self.users["user_id"] = self.users["user_id"].apply(lambda x: str(x-1))
+
+    # Loading movies dataset
+    self.movies_cols = [
+        'movie_id', 'title', 'release_date', "video_release_date", "imdb_url"
+    ] + self.genre_cols
+    self.movies = pd.read_csv(
+        'ml-100k/u.item', sep='|', names=self.movies_cols, encoding='latin-1')
+    # Since the ids start at 1, we shift them to start at 0.
+    self.movies["movie_id"] = self.movies["movie_id"].apply(lambda x: str(x-1))
+    self.movies["year"] = self.movies['release_date'].apply(lambda x: str(x).split('-')[-1])
+
+    # Loading ratings dataset
+    self.ratings_cols = ['user_id', 'movie_id', 'rating', 'unix_timestamp']
+    self.ratings = pd.read_csv(
+        'ml-100k/u.data', sep='\t', names=self.ratings_cols, encoding='latin-1')
+    # Since the ids start at 1, we shift them to start at 0.
+    self.ratings["movie_id"] = self.ratings["movie_id"].apply(lambda x: str(x-1))
+    self.ratings["user_id"] = self.ratings["user_id"].apply(lambda x: str(x-1))
+    self.ratings["rating"] = self.ratings["rating"].apply(lambda x: float(x))
+
+    # Compute the number of movies to which a genre is assigned.
+    genre_occurences = self.movies[self.genre_cols].sum().to_dict()
+
+    # Create one merged DataFrame containing all the movielens data.
+    movielens = self.ratings.merge(self.movies, on='movie_id').merge(self.users, on='user_id')
+    self.df = movielens
+    return movielens
 ```
 
 **Exploring Dataset**:
