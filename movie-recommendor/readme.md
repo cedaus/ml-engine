@@ -124,16 +124,52 @@ def explore_user_data(self):
 
 Lets also look at the information about movies and ratings given to them
 
+> Code snippet from data_loader.py
+```
+def explore_movies_data(self):
+    self.mark_genres()
+    self.movies_ratings = self.movies.merge(
+        self.ratings
+        .groupby('movie_id', as_index=False)
+        .agg({'rating': ['count', 'mean']})
+        .flatten_cols(),
+        on='movie_id')
+
+    (self.movies_ratings[['title', 'rating count', 'rating mean']]
+     .sort_values('rating count', ascending=False)
+     .head(10))
+
+    (self.movies_ratings[['title', 'rating count', 'rating mean']]
+     .mask('rating count', lambda x: x > 20)
+     .sort_values('rating mean', ascending=False)
+     .head(10))
+
+    self.genre_filter = alt.selection_multi(fields=['genre'])
+    self.genre_chart = alt.Chart().mark_bar().encode(
+        x="count()",
+        y=alt.Y('genre'),
+        color=alt.condition(
+            self.genre_filter,
+            alt.Color("genre:N"),
+            alt.value('lightgray'))
+    ).properties(height=300, selection=self.genre_filter)
+
+```
+
 > Movies Data table
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-8.png)
 
 > Movies Ratings Data table
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-9.png)
 
 > Chart for genre
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-10.png)
 
 > Histogram for 
+
 ![](https://sapiens-assets.s3.ap-south-1.amazonaws.com/mr-11.png)
 
 **Filtering Data**:
