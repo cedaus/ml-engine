@@ -70,6 +70,42 @@ def load_movielens_dataset(self):
 
 **Exploring Dataset**:
 
+Before we dive into model building, let's inspect our MovieLens dataset. It is usually helpful to understand the statistics of the dataset.
+
+We start by printing the users dataset and creating some histograms associated to it.
+
+> Code snippert from data_loader.py
+```
+def explore_user_data(self):
+    self.users_ratings = (
+        self.ratings
+        .groupby('user_id', as_index=False)
+        .agg({'rating': ['count', 'mean']})
+        .flatten_cols()
+        .merge(self.users, on='user_id')
+    )
+
+    self.occupation_filter = alt.selection_multi(fields=["occupation"])
+    self.occupation_chart = alt.Chart().mark_bar().encode(
+        x="count()",
+        y=alt.Y("occupation:N"),
+        color=alt.condition(
+            self.occupation_filter,
+            alt.Color("occupation:N", scale=alt.Scale(scheme='category20')),
+            alt.value("lightgray")),
+    ).properties(width=300, height=300, selection=self.occupation_filter)
+
+    self.age_filter = alt.selection_multi(fields=["age"])
+    self.age_chart = alt.Chart().mark_bar().encode(
+        x="count()",
+        y=alt.Y("age:N"),
+        color=alt.condition(
+            self.age_filter,
+            alt.Color("age:N", scale=alt.Scale(scheme='category20')),
+            alt.value("lightgray")),
+    ).properties(width=500, height=500, selection=self.age_filter)
+```
+
 **Filtering Data**:
 * Content based filtering
 * User-User collaborative filtering
