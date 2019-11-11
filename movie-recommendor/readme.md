@@ -214,6 +214,8 @@ def explore_movies_data(self):
 [Link to Google Collab](https://colab.research.google.com/drive/1NiZueMUlvaUzn0yzuIZOZPT3hC4gLRws)
 
 **Resources**
-[Recommendatin System by Google](https://developers.google.com/machine-learning/recommendation)
-[Comprehensive Guide to build a Recommendation Engine from scratch](https://www.analyticsvidhya.com/blog/2018/06/comprehensive-guide-recommendation-engine-python/?#)
-[Creating a Hybrid Content-Collaborative Movie Recommender Using Deep Learning](https://towardsdatascience.com/creating-a-hybrid-content-collaborative-movie-recommender-using-deep-learning-cc8b431618af)
+- [Recommendatin System by Google](https://developers.google.com/machine-learning/recommendation)
+- [Comprehensive Guide to build a Recommendation Engine from scratch](https://www.analyticsvidhya.com/blog/2018/06/comprehensive-guide-recommendation-engine-python/?#)
+- [Creating a Hybrid Content-Collaborative Movie Recommender Using Deep Learning](https://towardsdatascience.com/creating-a-hybrid-content-collaborative-movie-recommender-using-deep-learning-cc8b431618af)
+- [Deep Learning for Recommendation with Keras and TensorRec](https://hackernoon.com/deep-learning-for-recommendation-with-keras-and-tensorrec-2b8935c795d0)
+- [Recommender Systems by Ritchi Ng](https://www.ritchieng.com/machine-learning-recommender-systems/)
